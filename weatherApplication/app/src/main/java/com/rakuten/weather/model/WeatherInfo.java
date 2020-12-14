@@ -31,7 +31,7 @@ public class WeatherInfo implements Serializable {
     }
 
     public String getCityName() {
-        return location.cityName;
+        return getLocation().cityName;
     }
 
     public void setCityName(String city_name) {
@@ -40,7 +40,7 @@ public class WeatherInfo implements Serializable {
 
 
     public String getCountryName() {
-        return location.countryName;
+        return getLocation().countryName;
     }
 
     public void setCountryName(String countryName) {
@@ -48,7 +48,7 @@ public class WeatherInfo implements Serializable {
     }
 
     public String getCountryTimeZone() {
-        return location.countryTimeZone;
+        return getLocation().countryTimeZone;
     }
 
     public void setCountryTimeZone(String countryTimeZone) {
@@ -56,7 +56,7 @@ public class WeatherInfo implements Serializable {
     }
 
     public String getCountryTime() {
-        return location.countryTime;
+        return getLocation().countryTime;
     }
 
     public void setCountryTime(String countryTime) {

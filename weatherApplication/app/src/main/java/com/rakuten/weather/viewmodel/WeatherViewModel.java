@@ -40,17 +40,20 @@ public class WeatherViewModel extends BaseViewModel implements IWeatherHelper {
                 .getWeatherInfoApiCall(city)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .doOnSuccess(response-> setData(response))
                 .subscribe(response -> {
                      setIsLoading(false);
-                    //getNavigator().openMainActivity();
+                    setData(response);
+
                 }, throwable -> {
                     setIsLoading(false);
                     //getNavigator().handleError(throwable);
                 }));
     }
-    public void setData(WeatherInfo weatherInfoSingle){
-        weatherLiveData.setValue(weatherInfoSingle);
+    public void setData(WeatherInfo weather){
+        if(weather==null ){
+         return;
+        }
+        weatherLiveData.setValue(weather);
     }
     public LiveData<WeatherInfo> getWeatherLiveData() {
         return weatherLiveData;

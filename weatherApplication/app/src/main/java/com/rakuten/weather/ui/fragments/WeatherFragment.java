@@ -136,12 +136,21 @@ public class WeatherFragment extends BaseFragment implements WeatherListAdapter.
       @Override
       public void onChanged(@androidx.annotation.Nullable WeatherInfo weatherInfo) {
         Log.i(TAG, "subscribeToLiveData ::  start " );
+
         getBaseActivity().hideLoading();
-        mWeatherAdapter.refineDataList(weatherInfo);
-        updateWeatherData(weatherInfo);
-        saveWeatherRepositoryInfo(weatherInfo);
+
+        if(weatherInfo!=null && !isNullOrEmpty(weatherInfo.getCityName())) {
+          mWeatherAdapter.refineDataList(weatherInfo);
+          updateWeatherData(weatherInfo);
+          saveWeatherRepositoryInfo(weatherInfo);
+        }
       }
     });
+  }
+  public  boolean isNullOrEmpty(String str) {
+    if(str != null && !str.isEmpty())
+      return false;
+    return true;
   }
   public void getWeatherData(final String city){
      hideKeyboard();
